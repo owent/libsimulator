@@ -8,8 +8,8 @@
 
 依赖系统库
 ------
-1. history
-2. readline 
+1. history (可更换)
+2. readline (可更换)
 3. termcap
 4. pthread
 5. [owent-utils/c-cpp](https://github.com/owent-utils/c-cpp) 中的部分内容
@@ -22,7 +22,7 @@
 
 更新提示
 ------
-如果需要使用自定义的readline库，请替换include文件夹内的readline文件夹和lib目录下的libreadline.a和libhistory.a
+如果需要使用自定义的readline库（比如用[libedit](http://thrysoee.dk/editline/)来脱离对readline中GPL的依赖），请在cmake选项中加 **-DREADLINE_ROOT=[lib的安装目录]**
 
 
 终端说明
