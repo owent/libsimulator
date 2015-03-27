@@ -45,21 +45,27 @@ http://cnswww.cns.cwru.edu/php/chet/readline/rluserman.html
 
 
 ### 命令行模式下默认系统命令:
+```bash
 !, sh                                   <cmd> [args ...] 执行系统命令
 exit, quit                              退出
 ?, help                                 查看命令列表
 SetCmdPlayer                            设置命令行所控制的用户
+```
 
 程序接口
 ------
 
 框架接口 @see include/Simulator.h
+
 自定义调度器 @see include/DispatcherImpl.h
+
 玩家类型 @see include/PlayerImpl.h
+
 自定义命令 @see include/ReqRspBase.h
+
 定时器 @see include/TimerImpl.h
 
 
 注记
 ------
-写得比较乱，仅给自己使用
+写得比较乱，目前仅给自己所在的项目中使用
