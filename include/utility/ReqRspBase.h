@@ -90,6 +90,7 @@ namespace simulator
             COUT_ERROR_MSG("Cmd Error.")<< std::endl;
             const typename copt::CmdOptionList::cmd_array_type& stArray = stParam.GetCmdArray();
 
+            DisableReqPkg(stParam);
             size_t uLen = stArray.size();
             std::stringstream ss;
             if (uLen < 2)
@@ -148,7 +149,7 @@ namespace simulator
         /**
          * 关闭请求报文处理后的发送动作
          */
-        inline void DisableReqPkg(copt::callback_param stParam)
+        inline static void DisableReqPkg(copt::callback_param stParam)
         {
             ReqInfo<msg_t , player_t >& stReqInfo = GetReqInfo(stParam);
             stReqInfo.bSendReq = false;
@@ -157,7 +158,7 @@ namespace simulator
         /**
          * 关闭请求报文处理后的发送动作
          */
-        void DisableReqPkg(const std::string& strMsg, copt::callback_param stParam)
+        void static DisableReqPkg(const std::string& strMsg, copt::callback_param stParam)
         {
             DisableReqPkg(stParam);
             COUT_ERROR_MSG(strMsg)<< std::endl;
@@ -179,7 +180,7 @@ namespace simulator
          * 获取待发送的请求信息
          * @return 待发送的请求报文
          */
-        inline ReqInfo<msg_t , player_t >& GetReqInfo(copt::callback_param stParam)
+        inline static ReqInfo<msg_t , player_t >& GetReqInfo(copt::callback_param stParam)
         {
             ReqInfo<msg_t , player_t >* pReqInfo = (ReqInfo<msg_t , player_t >*)(stParam.GetExtParam());
             return *pReqInfo;
@@ -189,7 +190,7 @@ namespace simulator
          * 获取待发送的请求报文
          * @return 待发送的请求报文
          */
-        inline msg_t& GetReqPkg(copt::callback_param stParam)
+        inline static msg_t& GetReqPkg(copt::callback_param stParam)
         {
             ReqInfo<msg_t , player_t >& stReqInfo = GetReqInfo(stParam);
             return *stReqInfo.pSendMsg;
@@ -199,7 +200,7 @@ namespace simulator
          * 获取待发送请求的玩家
          * @return 待发送请求的玩家
          */
-        inline std::shared_ptr<player_t> GetReqPlayer(copt::callback_param stParam)
+        inline static std::shared_ptr<player_t> GetReqPlayer(copt::callback_param stParam)
         {
             ReqInfo<msg_t , player_t >& stReqInfo = GetReqInfo(stParam);
             return stReqInfo.pPlayer;

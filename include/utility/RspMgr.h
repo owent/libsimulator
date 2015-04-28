@@ -63,7 +63,7 @@ namespace simulator
                       << m_pMsgSerializeFn(stPkg)
                       << std::endl;
             // 回调查找和调用
-            typename std::map<msg_id_t, callback_func_type >::iterator iter = m_stRspCmds.find(m_pMsgPickMsgIDFn(stPkg));
+            typename std::map<msg_id_t, callback_func_type >::iterator iter = m_stRspCmds.find(m_pMsgPickMsgIDFn(pstPlayer, stPkg));
 
             if (iter == m_stRspCmds.end())
             {

@@ -176,10 +176,12 @@ namespace simulator
             {
                 printf("Unknown Command ");
                 COUT_ERROR_MSG(stParam[0]->AsString())<< std::endl;
+            }
 
-                // 禁止发送报文
-                bool* pIsSendReq = (bool*)stParam.GetExtParam();
-                (*pIsSendReq) = false;
+            // 禁止发送报文
+            ReqInfo<TMsg, TPlayer>* pReqInfo = (ReqInfo<TMsg, TPlayer>*)stParam.GetExtParam();
+            if (NULL != pReqInfo) {
+                pReqInfo->bSendReq = false;
             }
         }
 
