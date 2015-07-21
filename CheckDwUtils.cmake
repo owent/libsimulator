@@ -19,11 +19,17 @@ if (NOT EXISTS "${CMAKE_CURRENT_LIST_DIR}/include/std" OR NOT EXISTS "${CMAKE_CU
 
     macro(DOWN_UTILS_RUN SRC DST)
         message(STATUS "download file ${SRC} to ${DST}")
-        file(DOWNLOAD
-            "${SRC}"
-            "${DST}"
-            SHOW_PROGRESS
-        )
+        find_program (CURL_FULL_PATH curl)
+        if(CURL_FULL_PATH)
+            execute_process(COMMAND ${CURL_FULL_PATH} --insecure -L ${SRC} -o ${DST})
+        else()
+            find_program (WGET_FULL_PATH wget)
+            if(WGET_FULL_PATH)
+                execute_process(COMMAND ${WGET_FULL_PATH} --no-check-certificate -v ${SRC} -O ${DST})
+            else()
+                file(DOWNLOAD ${SRC} ${DST} SHOW_PROGRESS)
+            endif()
+        endif()
     endmacro()
 
     message(STATUS "download ")
